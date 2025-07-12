@@ -1,0 +1,40 @@
+name: SQLFluff Lint
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**/*.sql'
+
+jobs:
+  sqlfluff-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11.7'
+
+    - name: Install SQLFluff
+      run: |
+        pip install sqlfluff[redshift] requests
+
+    - name: Get changed SQL files
+      id: changed-files
+      uses: tj-actions/changed-files@v40
+      with:
+        files: |
+          **/*.sql
+        separator: " "
+
+    - name: Run SQLFluff lint on changed SQL files
+      if: steps.changed-files.outputs.any_changed == 'true'
+      env:
+        CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+      run: |
+        python3 scripts/sqlfluff/lint_runner.py
