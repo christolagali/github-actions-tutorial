@@ -106,6 +106,7 @@ def main():
     
     # Exit with error if any linting failed
     if not lint_passed:
+        print("SQLFluff linting failed")
         sys.exit(1)
 
 
