@@ -106,6 +106,7 @@ def main():
     
     # Exit with error if any linting failed
     if not lint_passed:
+        print('linting failed')
         sys.exit(1)
 
 
