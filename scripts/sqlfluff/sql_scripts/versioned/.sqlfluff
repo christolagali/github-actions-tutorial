@@ -1,0 +1,22 @@
+[sqlfluff]
+templater = jinja
+dialect = redshift
+exclude_rules = AL01,AL04,AL05,AL06,AL07,AM01,AM02,AM03,AM04,AM07,CV01,CV02,CV03,CV04,CV05,CV06,CV07,CV08,CV09,CV10,CV11,LT01,LT03,LT05,LT07,LT08,LT12,LT13,RF01,RF02,RF03,RF04,RF05,RF06,ST01,ST02,ST03,ST06,ST07,ST08,TQ01,L009,L032
+ignore = templating
+large_file_skip_byte_limit = 0
+max_line_length = 0
+processes = -1
+
+[sqlfluff:templater:jinja:context]
+schema_name_data_mart=data_mart
+schema_name_business_vault = business_vault
+
+[sqlfluff:templater:jinja]
+
+
+[sqlfluff:templater:placeholder]
+param_style = dollar
+
+[sqlfluff:templater:placeholder:context]
+schema_name_business_vault = business_vault
+schema_name_data_mart=data_mart
