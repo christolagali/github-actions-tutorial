@@ -19,6 +19,7 @@ def main():
         
         if violation_count > 0:
             print(f"SQLFluff found {violation_count} violation(s)")
+            print(results)
             sys.exit(1)
         else:
             print("No violations found")
