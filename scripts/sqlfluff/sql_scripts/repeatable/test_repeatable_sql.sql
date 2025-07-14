@@ -1,2 +1,2 @@
-SELECT * 
-FROM ${schema_name_data_mart}.test;
+select * 
+from ${schema_name_data_mart}.test;
