@@ -11,7 +11,7 @@ import json
 from typing import List, Dict, Any
 
 
-def separate_files_by_path(changed_files: List[str]) -> Tuple[List[str], List[str]]:
+def separate_files_by_path(changed_files: List[str]) -> tuple[List[str], List[str]]:
     """
     Separate files by path to determine which config to use.
     
@@ -19,7 +19,7 @@ def separate_files_by_path(changed_files: List[str]) -> Tuple[List[str], List[st
         changed_files: List of file paths
         
     Returns:
-        Tuple of (repeatable_files, other_files)
+        tuple of (repeatable_files, other_files)
     """
     repeatable_files = []
     other_files = []
