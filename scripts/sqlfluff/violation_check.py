@@ -58,6 +58,9 @@ def main():
         formatted_results = format_sqlfluff_results(results)
 
         print(formatted_results)
+
+        if violation_count > 0:
+            sys.exit(1)
             
     except FileNotFoundError:
         print("SQLFluff results file not found")
