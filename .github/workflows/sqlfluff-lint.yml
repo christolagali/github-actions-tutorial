@@ -2,44 +2,46 @@ name: SQLFluff Lint
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, edited, reopened, synchronize]
     paths:
       - '**/*.sql'
 
 jobs:
-  sqlfluff-lint:
+  sqlfluff_lint:
+    name: SQLFluff Lint
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11.7'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.7'
 
-    - name: Install SQLFluff
-      run: |
-        pip install sqlfluff[redshift] requests
+      - name: Install SQLFluff
+        run: |
+          pip install sqlfluff[redshift]
 
-    - name: Get changed SQL files
-      id: changed-files
-      uses: tj-actions/changed-files@v40
-      with:
-        files: |
-          **/*.sql
-        separator: " "
+      - name: Get changed SQL files
+        id: changed-sql-files
+        uses: tj-actions/changed-files@v40
+        with:
+          files: |
+            **/*.sql
+          separator: " "
 
-    - name: Run SQLFluff lint on changed SQL files
-      if: steps.changed-files.outputs.any_changed == 'true'
-      env:
-        CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-      run: |
-        python3 scripts/sqlfluff/lint_runner.py
+      - name: Run SQLFluff linting
+        if: steps.changed-sql-files.outputs.any_changed == 'true'
+        env:
+          CHANGED_SQL_FILES: ${{ steps.changed-sql-files.outputs.all_changed_files }}
+        run: |
+          echo "Running SQLFluff linting on changed SQL files"
+          python3 airflow/linters/helpers/lint_runner.py
 
-    - name: Fail job if SQLFluff found violations
-      if: steps.changed-files.outputs.any_changed == 'true'
-      run: |
-        python3 scripts/sqlfluff/violation_check.py
+      - name: Check for violations
+        if: steps.changed-sql-files.outputs.any_changed == 'true'
+        run: |
+          python3 airflow/linters/helpers/violation_check.py
