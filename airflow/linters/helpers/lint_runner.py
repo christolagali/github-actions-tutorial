@@ -84,7 +84,7 @@ def run_sqlfluff_json(
 def main():
     """Main function to generate JSON results."""
     # Get changed files from environment
-    changed_files_str = os.environ.get("CHANGED_FILES", "")
+    changed_files_str = os.environ.get("CHANGED_SQL_FILES", "")
     if not changed_files_str:
         print("No changed files found in environment")
         return
@@ -95,6 +95,7 @@ def main():
     repeatable_files, other_files = separate_files_by_path(changed_files)
 
     # Initialize results
+    combined_results = []
     repeatable_results = []
     other_results = []
 
