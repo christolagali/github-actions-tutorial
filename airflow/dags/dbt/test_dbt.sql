@@ -1,2 +1,3 @@
 SELECT * 
-from ${schema_name_data_mart}.test;
+from ${schema_name_data_mart}.test
+limit 10;
