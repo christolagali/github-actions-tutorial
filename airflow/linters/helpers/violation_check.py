@@ -64,6 +64,7 @@ def main():
         formatted_results, violation_count = format_sqlfluff_results(results)
 
         print(formatted_results)
+        print(f"Total violations found: {violation_count}")
 
         if violation_count > 0:
             sys.exit(1)
