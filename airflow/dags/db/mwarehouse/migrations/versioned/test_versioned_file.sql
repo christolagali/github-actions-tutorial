@@ -1,7 +1,7 @@
 {% set schema_name_business_vault = "test_schema" %}
 
-select
+SELECT
     val,
     val2
-from {{ schema_name_business_vault }}.test
+FROM {{ schema_name_business_vault }}.test
 ;
