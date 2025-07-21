@@ -7,16 +7,23 @@ large_file_skip_byte_limit = 0
 max_line_length = 0
 processes = -1
 
-[sqlfluff:templater:jinja:context]
-schema_name_data_mart=data_mart
-schema_name_business_vault = business_vault
-
-[sqlfluff:templater:jinja]
-
-
 [sqlfluff:templater:placeholder]
 param_style = dollar
 
 [sqlfluff:templater:placeholder:context]
-schema_name_business_vault = business_vault
-schema_name_data_mart=data_mart
+schema_name_test_mart=test_mart
+schema_name_samsung_public=samsung_public
+schema_name_data_vault=data_vault
+schema_name_data_vault_gfcs=data_vault_gfcs
+schema_name_data_vault_gcss=data_vault_gcss
+schema_name_business_vault=business_vault
+schema_name_bhv_insight=bhv_insight
+schema_name_public=public
+schema_name_mi_studio=mi_studio
+sfdc_entity_prefix_user='007'
+sfdc_entity_prefix_group='00T'
+sfdc_entity_prefix_calendar='045'
+sfdc_entity_prefix_contact='003'
+sfdc_entity_prefix_lead='00M'
+datashare_name_minkhouse=minkhouse_staging_usa
+datashare_name_minkhouse_eu=movableinkwarehouse_staging_euro
