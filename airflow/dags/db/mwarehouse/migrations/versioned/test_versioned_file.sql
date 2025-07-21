@@ -2,6 +2,6 @@
 
 SELECT
     val,
-    val2
-FROM {{ schema_name_business_vault }}.test
+val2
+from {{ schema_name_business_vault }}.test
 ;

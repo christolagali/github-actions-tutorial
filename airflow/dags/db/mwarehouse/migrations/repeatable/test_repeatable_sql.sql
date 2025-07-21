@@ -1,2 +1,5 @@
 SELECT * 
-FROM ${schema_name_data_mart}.test;
+from ${schema_name_data_mart}.test
+where
+    prefix = "{{ sfdc_entity_prefix_lead }}"
+;
