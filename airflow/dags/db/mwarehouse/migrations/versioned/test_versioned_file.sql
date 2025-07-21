@@ -1,9 +1,9 @@
 {% set schema_name_business_vault = "test_schema" %}
 
-select
-val,
+SELECT
+    val,
     val2
 FROM {{ schema_name_business_vault }}.test
-where
+WHERE
     prefix = "{{ sfdc_entity_prefix_lead }}";
 ;
