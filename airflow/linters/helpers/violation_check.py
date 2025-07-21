@@ -21,15 +21,14 @@ def format_sqlfluff_results(results: List[Dict[str, Any]]) -> str:
     """
     if not results:
         return "✓ No SQLFluff violations found."
-    
-    print(results)  # Debugging line to print raw results
 
     output_lines = []
+    violation_count = 0
 
     for result in results:
         filepath = result.get("filepath", "Unknown file")
         violations = result.get("violations", [])
-        violation_count = 0
+        violation_count += len(violations)
 
         output_lines.append(f"✗ {filepath}: {len(violations)} violation(s)")
 
@@ -49,7 +48,6 @@ def format_sqlfluff_results(results: List[Dict[str, Any]]) -> str:
             )
             # Empty line for readability
             output_lines.append("")
-            violation_count += 1
 
     return "\n".join(output_lines), violation_count
 
