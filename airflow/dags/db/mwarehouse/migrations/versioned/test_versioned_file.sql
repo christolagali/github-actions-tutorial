@@ -2,6 +2,6 @@
 
 select
     val,
-val2
+    val2
 from {{ schema_name_business_vault }}.test
 ;
